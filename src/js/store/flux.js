@@ -1,42 +1,36 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			contacts: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
+			getAgenda: asyn () => {
 				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+				await fetch("https://playground.4geeks.com/apis/fake/contact/MariaHurtado");
+				const jsonResponse = await Response.json();
 
-				//reset the global store
-				setStore({ demo: demo });
+				setStore(( contacts : jsonResponse));
+			},
+
+			addContact: (contactData) =>{
+				const store = getState();
+
+				await fetch("https://playground.4geeks.com/apis/fake/contact",{
+					method: "POST",
+					headers: ("contactType" : "application/json"),
+					body: JSON.stringify({
+						"full_name": contactData.fullName,
+						"email" : contactData.email,
+						"agenda_slug" : contactData.agendaSlug,
+						"address" : contactData.address,
+						"phone" : contactData.phone,
+					}
+					)
+				})
+
+			}
 			}
 		}
 	};
