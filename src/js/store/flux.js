@@ -10,7 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			inputs: {
 				nameInput: "",
 				emailInput: "",
-				agenda_slug: "estarlin_agenda",
+				agenda_slug: "Maria-Hurtado_agenda",
 				addressInput: "",
 				phoneInput: ""
 			}
@@ -25,14 +25,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getAgenda: async () => {
 				try {
 					const store = getStore()
-					await fetch("https://playground.4geeks.com/apis/fake/contact/agenda/estarlin_agenda")
+					await fetch("https://playground.4geeks.com/apis/fake/contact/agenda/Maria-Hurtado_agenda")
 						.then(res => res.json())
 						.then(data => {
 							data.map((e) => store.agenda.push(e))
 							setStore({ agenda: store.agenda })
 						})
 
-				} catch (e) { console.log("Error de Get agenda = ", e) }
+				} catch (e) { console.log("Error from Get agenda = ", e) }
 
 			},
 
@@ -72,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					const data = {
 						email: store.inputs.emailInput,
-						agenda_slug: "estarlin_agenda",
+						agenda_slug: "Maria-Hurtado_agenda",
 						address: store.inputs.addressInput,
 						phone: store.inputs.phoneInput,
 						full_name: store.inputs.nameInput
@@ -119,7 +119,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					const data = {
 						email: store.inputs.emailInput,
-						agenda_slug: "estarlin_agenda",
+						agenda_slug: "Maria-Hurtadp_agenda",
 						address: store.inputs.addressInput,
 						phone: store.inputs.phoneInput,
 						full_name: store.inputs.nameInput
